@@ -1,0 +1,80 @@
+<body style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+    <button style="display: inline;  margin-right: 23%; margin-left: 100px;"  mdbBtn type="button" color="primary" rounded="true" mdbWavesEffect (click)="logout()">Log-out</button>
+
+    <h1 style="text-align: center;color: blue;font-size: 50px; display: inline;">
+        hangman
+    </h1 >
+    <br>
+    <p style="text-align: center;">level: {{level}}</p>
+    <p style="display: inline;margin-left: 45%">the using char:</p>
+    <p style="display: inline;" *ngFor="let i of Array_for_use_char">{{i}} </p>
+
+    <p style="text-align: center;">Wrong Guesses :{{index}}
+        of 6</p>
+
+    <img style="margin-left: 45%;" src="http://localhost:4200/assets/images/{{imageStatus}}">
+    <!-- <p style="text-align: center; font-size: 40px;"> {{word_guess}}</p> -->
+    <!-- <button (click)="check()"></button> -->
+
+    <!-- <input  *ngFor='let in of counter() ;let i = index' style="width: 20px;margin-right: 10px;"> -->
+    <p style="display:inline;margin: auto; font-size:20px;margin-top: 300px;" *ngFor='let char of arr_word'>{{char}} </p>
+    <br>
+    <label style="margin-left: 45%;">{{massege_word}}
+    </label>
+    <div style="width: 1000px; margin: auto;margin-top: 20px;">
+
+        <button mdbBtn color="primary" *ngFor='let char of keyBoard' id={{char}}
+            style="width: 40px;height: 40px; margin:2px; background-color:teal; color:seashell;"
+            (click)="check_char(char)">{{char}}</button>
+    </div>
+</body>
+
+
+<!-- <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
+    Launch demo modal</button> -->
+
+<div  mdbModal #basicModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div style="text-align: center;" class="modal-dialog" role="document">
+        <div class="modal-content" style="text-align: center;">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">  יפה מאוד <br> הניקוד שלך הוא {{grade}}</h4>
+            </div>
+       
+            <div class="modal-footer justify-content-center">
+                <button type="button" mdbBtn color="primary" class="waves-light" aria-label="Close"
+                    (click)="basicModal.hide()" mdbWavesEffect (click)="logout()" >סיים משחק</button>
+                    <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="new_game()">play again</button>
+                    <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="next_level()">next level</button>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div  mdbModal #demoBasic="mdbModal" class="modal fade" id="basicExample" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div style="text-align: center;" class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Oops you ran out of guesses... <br> your points: {{grade}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="demoBasic.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+          
+            <div class="modal-footer" style="text-align: center;">
+                <!-- <button type="button" mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>לוח תוצאות</button> -->
+                <button type="button" mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect (click)="new_game()">play again</button>
+                <button type="button" mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect   (click)="logout()">Get out of the game</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+

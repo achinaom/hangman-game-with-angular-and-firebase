@@ -1,0 +1,51 @@
+<h1  *ngIf="isSignedIn ==false" style="text-align: center;color: blue;font-size: 50px;">
+  hangman-game
+</h1>
+
+<div style="width: 50%; margin: auto;">
+  <div *ngIf="isSignedIn ==false" class="btn-group" role="group" aria-label="Basic example"
+    style="width: 100%;margin-top: 50px;">
+    <button mdbBtn type="button" color="primary" class="waves-light" mdbWavesEffect (click)="change_sign_up()">sign up</button>
+    <button mdbBtn type="button" color="primary" class="waves-light" mdbWavesEffect (click)="change_sign_in()">sign in</button>
+  </div>
+  <!-- Default form sign- up -->
+  <div class="text-center border border-light p-5" *ngIf="signUpDegel==true && isSignedIn==false">
+    <p class="h4 mb-4">sign UP</p>
+    <p>Join our mailing list. We write rarely, but only with the best content.</p>
+    <!-- Email -->
+    <input type="text" class="form-control mb-4" placeholder="E-mail" [(ngModel)]="emailSignUp">
+    <!-- Name -->
+    <input type="text" class="form-control mb-4" placeholder="password" [(ngModel)]="paswordSignUp">
+    <!-- Sign in button -->
+    <button mdbBtn color="info" (click)="onSignup()" block="true" type="button">Sign up</button>
+  </div>
+
+
+
+
+
+  <!-- Default form sign- in -->
+
+  <div class="text-center border border-light p-5" *ngIf="signInDegel==true && isSignedIn==false">
+    <p class="h4 mb-4">sign In</p>
+    <p>Join our mailing list. We write rarely, but only with the best content.</p>
+    <!-- Email -->
+    <input type="text" class="form-control mb-4" placeholder="E-mail" [(ngModel)]="email">
+    <!-- Name -->
+    <input type="text" class="form-control mb-4" placeholder="password" [(ngModel)]="pasword">
+    <!-- Sign in button -->
+    <button mdbBtn color="info" (click)="onSignin()" block="true" type="button">Sign In</button>
+
+
+  </div>
+  <!-- Default form subscription -->
+
+
+
+</div>
+
+<app-hangman *ngIf="isSignedIn==true" (isLogout)="handelLogOut()"></app-hangman>
+<footer
+style="width: 100%;height:40px; background-color:blue;margin-top: 65px;">
+<p style="margin-left: 550px;color: white;">achinoam.ben.rahamim@gmail.com</p>
+</footer>
