@@ -7,30 +7,18 @@ import { FirebaseService } from 'src/service/firebase.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  [x: string]: any;
   title = 'mdb-angular-free';
-
   successAlert = false;
-
-  copyToClipboard(value: string): void {
-    const tempInput = document.createElement("input");
-    tempInput.value = value;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    document.execCommand("copy");
-    document.body.removeChild(tempInput);
-
-    this.successAlert = true;
-
-    setTimeout(() => {
-      this.successAlert = false;
-    }, 900);
-  }
-
   degel: boolean = false;
   isSignedIn: boolean = false;
-
-  constructor(public fireBaseServse: FirebaseService) {
+  signIn: boolean = false;
+  signUp: boolean = true;
+  email: string = ""
+  pasword: string = ""
+  constructor(public fireBaseService: FirebaseService) {
   }
+
   ngOnInit(): void {
     if (localStorage.getItem('user') != null) {
       this.isSignedIn = true;
@@ -38,36 +26,37 @@ export class AppComponent implements OnInit {
     }
     else
       this.isSignedIn = false;
-
   }
-  async onSignup() {
+  async onSignUp() {
+    await this.fireBaseService.signUp(this.email, this.pasword)
     debugger
-    await this.fireBaseServse.signUp(this.emailSignUp, this.paswordSignUp)
-    debugger
-    if (this.fireBaseServse.isLogIn == true)
+    if (this.fireBaseService.isLogIn == true)
       this.isSignedIn = true;
+    this.pasword = ""
+    this.email = ""
   }
-  async onSignin() {
+  async onSignIn() {
     debugger
-    await this.fireBaseServse.signIn(this.email, this.pasword)
-    if (this.fireBaseServse.isLogIn == true)
+    await this.fireBaseService.signIn(this.email, this.pasword)
+    if (this.fireBaseService.isLogIn == true)
       this.isSignedIn = true;
+    this.pasword = ""
+    this.email = ""
   }
   handelLogOut() {
     this.isSignedIn = false;
   }
-  change_sign_up() {
-    this.signInDegel = false;
-    this.signUpDegel = true;
+  showSignUp() {
+    this.signIn = false;
+    this.signUp = true;
+    this.pasword = ""
+    this.email = ""
   }
-  change_sign_in() {
-    this.signInDegel = true;
-    this.signUpDegel = false;
+  showSignIn() {
+    this.signIn = true;
+    this.signUp = false;
+    this.pasword = ""
+    this.email = ""
   }
-  signInDegel: boolean = false;
-  signUpDegel: boolean = true;
-  emailSignUp: string = ""
-  paswordSignUp: string = ""
-  email: string = ""
-  pasword: string = ""
+
 }

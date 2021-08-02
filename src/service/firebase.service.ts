@@ -15,14 +15,12 @@ export class FirebaseService {
         localStorage.setItem('user', JSON.stringify(res.user))
       })
   }
-  
-
 
   async signUp(email: string, password: string) {
     debugger
     await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
       .then(res => {
-        console.log("sss")
+        debugger
         this.isLogIn = true;
         localStorage.setItem('user', JSON.stringify(res.user))
       })

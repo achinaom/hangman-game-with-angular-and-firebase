@@ -1,51 +1,38 @@
-<h1  *ngIf="isSignedIn ==false" style="text-align: center;color: blue;font-size: 50px;">
-  hangman-game
-</h1>
+<div *ngIf="isSignedIn ==false">
+  <h1 class="h1 text-primary fixed-top div_center">
+    Hangman-game
+  </h1>
 
-<div style="width: 50%; margin: auto;">
-  <div *ngIf="isSignedIn ==false" class="btn-group" role="group" aria-label="Basic example"
-    style="width: 100%;margin-top: 50px;">
-    <button mdbBtn type="button" color="primary" class="waves-light" mdbWavesEffect (click)="change_sign_up()">sign up</button>
-    <button mdbBtn type="button" color="primary" class="waves-light" mdbWavesEffect (click)="change_sign_in()">sign in</button>
+  <div class="widthAndTop">
+    <div class="btn-group widthAndMargin" role="group" aria-label="Basic example">
+      <button mdbBtn type="button" color="primary" class="waves-light" mdbWavesEffect
+        (click)="showSignUp()">signup</button>
+      <button mdbBtn type="button" color="primary" class="waves-light" mdbWavesEffect (click)="showSignIn()">sign
+        in</button>
+    </div>
+
+    <div class="text-center border border-light p-5" *ngIf="signUp==true ">
+      <p class="h4 mb-4">sign UP</p>
+      <!-- Email -->
+      <input type="text" class="form-control mb-4" placeholder="mail" [(ngModel)]="email">
+      <!-- Name -->
+      <input type="text" class="form-control mb-4" placeholder="password" [(ngModel)]="pasword">
+      <button mdbBtn color="info" (click)="onSignUp()" block="true" type="button">Sign up</button>
+    </div>
+    <div class="text-center border border-light p-5" *ngIf="signIn==true && isSignedIn==false">
+      <p class="h4 mb-4">sign In</p>
+      <!-- Email -->
+      <input type="text" class="form-control mb-4" placeholder="mail" [(ngModel)]="email">
+      <!-- Name -->
+      <input type="text" class="form-control mb-4" placeholder="password" [(ngModel)]="pasword">
+      <button mdbBtn color="info" (click)="onSignIn()" block="true" type="button">Sign In</button>
+    </div>
   </div>
-  <!-- Default form sign- up -->
-  <div class="text-center border border-light p-5" *ngIf="signUpDegel==true && isSignedIn==false">
-    <p class="h4 mb-4">sign UP</p>
-    <p>Join our mailing list. We write rarely, but only with the best content.</p>
-    <!-- Email -->
-    <input type="text" class="form-control mb-4" placeholder="E-mail" [(ngModel)]="emailSignUp">
-    <!-- Name -->
-    <input type="text" class="form-control mb-4" placeholder="password" [(ngModel)]="paswordSignUp">
-    <!-- Sign in button -->
-    <button mdbBtn color="info" (click)="onSignup()" block="true" type="button">Sign up</button>
-  </div>
 
-
-
-
-
-  <!-- Default form sign- in -->
-
-  <div class="text-center border border-light p-5" *ngIf="signInDegel==true && isSignedIn==false">
-    <p class="h4 mb-4">sign In</p>
-    <p>Join our mailing list. We write rarely, but only with the best content.</p>
-    <!-- Email -->
-    <input type="text" class="form-control mb-4" placeholder="E-mail" [(ngModel)]="email">
-    <!-- Name -->
-    <input type="text" class="form-control mb-4" placeholder="password" [(ngModel)]="pasword">
-    <!-- Sign in button -->
-    <button mdbBtn color="info" (click)="onSignin()" block="true" type="button">Sign In</button>
-
-
-  </div>
-  <!-- Default form subscription -->
-
-
-
+  <footer class="page-footer font-small blue fixed-bottom">
+    <div class="footer-copyright text-center py-3">© achinoam.ben.rahamim@gmail.com
+    </div>
+  </footer>
 </div>
 
 <app-hangman *ngIf="isSignedIn==true" (isLogout)="handelLogOut()"></app-hangman>
-<footer
-style="width: 100%;height:40px; background-color:blue;margin-top: 65px;">
-<p style="margin-left: 550px;color: white;">achinoam.ben.rahamim@gmail.com</p>
-</footer>
